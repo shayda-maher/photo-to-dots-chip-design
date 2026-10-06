@@ -1,0 +1,11 @@
+name: simulate
+on: [push, pull_request]
+jobs:
+  sim:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y iverilog
+      - run: pip install numpy pillow
+      - run: python3 scripts/make_sample.py
+      - run: make
